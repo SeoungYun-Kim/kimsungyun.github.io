@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대기 인원 업데이트</title>
+</head>
+<body>
+    <h1>대기 인원 업데이트</h1>
+    <form id="queue-form">
+        <label for="queue">현재 대기 인원:</label>
+        <input type="number" id="queue" name="queue" required>
+        <button type="submit">업데이트</button>
+    </form>
+
+    <script>
+        document.getElementById('queue-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const queueNumber = document.getElementById('queue').value;
+
+            fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPOSITORY_NAME/contents/queue.json', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Update queue number',
+                    content: btoa(JSON.stringify({ queue: parseInt(queueNumber, 10) })),
+                    sha: '' // This needs to be the current sha of the file, you can fetch this via the GitHub API
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('대기 인원이 업데이트되었습니다.');
+            })
+            .catch(error => console.error('Error updating queue data:', error));
+        });
+    </script>
+</body>
+</html>
