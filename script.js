@@ -15,3 +15,4 @@ setInterval(updateQueueNumber, 1000);
 // 페이지 로드 시 즉시 업데이트
 updateQueueNumber();
 
+
