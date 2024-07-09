@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대기 인원 상태</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #queue-number {
+            font-size: 2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>현재 대기 인원</h1>
+    <p id="queue-number">0명</p>
+    <script src="script.js"></script>
+</body>
+</html>
+// script.js
+const queueNumberElement = document.getElementById('queue-number');
+
+function updateQueueNumber() {
+    fetch('https://raw.githubusercontent.com/YOUR_USERNAME/queue-status/main/queue.json')
+        .then(response => response.json())
+        .then(data => {
+            queueNumberElement.textContent = `${data.queue}명`;
+        })
+        .catch(error => console.error('Error fetching queue data:', error));
+}
+
+// 매 5초마다 대기 인원 업데이트
+setInterval(updateQueueNumber, 5000);
+
+// 페이지 로드 시 즉시 업데이트
+updateQueueNumber();
+{
+    "queue": 0
+}
