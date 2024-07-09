@@ -18,16 +18,16 @@
             event.preventDefault();
             const queueNumber = document.getElementById('queue').value;
 
-            fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPOSITORY_NAME/contents/queue.json', {
+            fetch('https://api.github.com/repos/SeoungYun-Kim/kimsungyun.github.io/contents/queue.json', {
                 method: 'PUT',
                 headers: {
-                    'Authorization': 'token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN',
+                    'Authorization': 'token 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',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     message: 'Update queue number',
                     content: btoa(JSON.stringify({ queue: parseInt(queueNumber, 10) })),
-                    sha: '' // 이 부분은 현재 파일의 SHA 값을 필요로 합니다.
+                    sha: 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391' // 이 부분은 현재 파일의 SHA 값을 필요로 합니다.
                 })
             })
             .then(response => response.json())
@@ -40,6 +40,3 @@
 </body>
 </html>
 
-    </script>
-</body>
-</html>
