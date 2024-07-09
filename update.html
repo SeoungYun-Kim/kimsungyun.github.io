@@ -27,7 +27,7 @@
                 body: JSON.stringify({
                     message: 'Update queue number',
                     content: btoa(JSON.stringify({ queue: parseInt(queueNumber, 10) })),
-                    sha: '' // This needs to be the current sha of the file, you can fetch this via the GitHub API
+                    sha: '' // 이 부분은 현재 파일의 SHA 값을 필요로 합니다.
                 })
             })
             .then(response => response.json())
@@ -36,6 +36,10 @@
             })
             .catch(error => console.error('Error updating queue data:', error));
         });
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
