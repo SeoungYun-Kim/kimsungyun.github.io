@@ -1,7 +1,7 @@
 const queueNumberElement = document.getElementById('queue-number');
 
 function updateQueueNumber() {
-    fetch('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME/main/queue.json')
+    fetch('https://raw.githubusercontent.com/SeoungYun-KimE/kimsungyun.github.io/main/queue.json')
         .then(response => response.json())
         .then(data => {
             queueNumberElement.textContent = `${data.queue}명`;
